@@ -17,7 +17,12 @@ Route::get('/', function () {
     return view('ui.dashboard');
 });
 
-Route::get('/welcome', function () {
+Route::get('/akun', function () {
+    return view('ui.akun.index');
+});
+
+Route::get('/slide', function () {
     return view('ui.slide.index');
 });
+
 
