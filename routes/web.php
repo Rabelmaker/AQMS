@@ -1,28 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('ui.dashboard');
+Route::get('/login', [AdminController::class, "login"])->name("login");
+Route::post('/login', [AdminController::class, "post_login"])->name("post_login");
+
+
+Route::group(['middleware' => ['AdminMiddleware']], function () {
+    Route::get('/logout', [AdminController::class, "logout"])->name("logout");
+    Route::get('/dashboard', [AdminController::class, "dashboard"])->name("dashboard");
+
+//    Route::prefix('slide')->group(function () {
+//        $x = "slide";
+//        Route::get('/', [AdminController::class, $x])->name($x);
+//        Route::post('/', [AdminController::class, "post_$x"])->name("post_$x");
+//        Route::get('/add', [AdminController::class, "add_$x"])->name("add_$x");
+//        Route::get('/edit/{id}', [AdminController::class, "edit_$x"])->name("edit_$x");
+//        Route::get('/delete/{id}', [AdminController::class, "delete_$x"])->name("delete_$x");
+//    });
+
+
 });
-
-Route::get('/akun', function () {
-    return view('ui.akun.index');
-});
-
-Route::get('/slide', function () {
-    return view('ui.slide.index');
-});
-
 

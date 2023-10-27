@@ -23,7 +23,7 @@ class AdminController extends Controller
         if (Auth::guard('admin')->check()) {
             return redirect(route('dashboard'));
         } else {
-            return view('ui.login');
+            return view('ui.auth.login');
         }
 
     }
@@ -137,7 +137,7 @@ class AdminController extends Controller
 
     public function push_notifikasi($id_akun, $judul, $pesan)
     {
-        $akun = DB::table('akun_tb')->find($id_akun);
+        $akun = DB::table('admin_tb')->find($id_akun);
         $app_name = DB::table('setting_tb')->find($this->idAdmin())->app_name;
 
         $key = "key=AAAA_bBYUFs:APA91bHGTugGFDhQK61yjefK6Xre3BR98P4sHw8uZy3cqTcyBwErpJ1VezpzDS1iNE003HObVR_WkcrM87km0G-xZsFg_24kSTijW2F_SSORMSUweojkCTlF7xndgQB55PGn1Lbfc0B1";
