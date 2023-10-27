@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function akun()
+    {
+        return view('ui.akun.index');
+    }
     public function dashboard()
     {
         if (Auth::guard('admin')->check()) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/login', [AdminController::class, "login"])->name("login");
 Route::post('/login', [AdminController::class, "post_login"])->name("post_login");
+Route::get('/akun', [AdminController::class, "akun"])->name("akun");
 
 
 Route::group(['middleware' => ['AdminMiddleware']], function () {
