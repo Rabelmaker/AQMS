@@ -124,7 +124,6 @@ class AdminController extends Controller
     public function slide_show()
     {
         $data = DB::table('slide_tb')->get();
-        @dd($data);
         return view('ui.userscreen.home.index', ['datas' => $data]);
     }
     //------------------------------------------------------------------------------------------------------------------

@@ -48,6 +48,10 @@
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/structure.6ac30bc7.css"/>
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/structure.6dfd760a.css"/>
 
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/scrollspyNav.326657de.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/scrollspyNav.4a7b7b07.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/scrollspyNav.4a7b7b07.css"/>
+
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <!--  BEGIN CUSTOM STYLE FILE  -->
@@ -61,8 +65,30 @@
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/list-group.40423aa1.css"/>
     <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/modules-widgets.438cac09.css"/>
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/modules-widgets.438cac09.css"/>
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/plugins/sweetalerts2/sweetalerts2.css">
+    <link rel="preload" as="style"
+          href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.7039cdf5.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.7039cdf5.css"/>
+    <link rel="preload" as="style"
+          href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.fba5cd51.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.fba5cd51.css"/>
+
+    <link href="{{ asset('/theme/cork') }}laravel/build/vendors/iconic-fonts/font-awesome/css/all.min.css"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}laravel/build/vendors/iconic-fonts/flat-icons/flaticon.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('/theme/cork') }}laravel/build/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery UI -->
+    <link href="{{ asset('/theme/cork') }}laravel/build/css/jquery-ui.min.css" rel="stylesheet">
+    <!-- Weedo styles -->
+    <link href="{{ asset('/theme/cork') }}laravel/build/css/style.css" rel="stylesheet">
     <!--  END CUSTOM STYLE FILE  -->
     <!-- END GLOBAL MANDATORY STYLES -->
+</head>
+<!--  END CUSTOM STYLE FILE  -->
+<!-- END GLOBAL MANDATORY STYLES -->
 </head>
 <body class="layout-boxed">
 
@@ -113,31 +139,6 @@
 
         <ul class="navbar-item flex-row ms-lg-auto ms-0">
 
-            <li class="nav-item dropdown language-dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown"
-                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('/theme/cork') }}/laravel/build/assets/us.59accbac.svg" class="flag-width"
-                         alt="flag">
-                </a>
-                <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
-                    <a class="dropdown-item d-flex" href="javascript:void(0);"><img
-                            src="{{ asset('/theme/cork') }}/laravel/build/assets/us.59accbac.svg" class="flag-width"
-                            alt="flag"> <span class="align-self-center">&nbsp;English</span></a>
-                    <a class="dropdown-item d-flex" href="javascript:void(0);"><img
-                            src="{{ asset('/theme/cork') }}/laravel/build/assets/tr.be7d115b.svg" class="flag-width"
-                            alt="flag"> <span class="align-self-center">&nbsp;Turkish</span></a>
-                    <a class="dropdown-item d-flex" href="javascript:void(0);"><img
-                            src="{{ asset('/theme/cork') }}/laravel/build/assets/br.ce7e334e.svg" class="flag-width"
-                            alt="flag"> <span class="align-self-center">&nbsp;Portuguese</span></a>
-                    <a class="dropdown-item d-flex" href="javascript:void(0);"><img
-                            src="{{ asset('/theme/cork') }}/laravel/build/assets/in.9a372951.svg" class="flag-width"
-                            alt="flag"> <span class="align-self-center">&nbsp;Hindi</span></a>
-                    <a class="dropdown-item d-flex" href="javascript:void(0);"><img
-                            src="{{ asset('/theme/cork') }}/laravel/build/assets/de.d5f40046.svg" class="flag-width"
-                            alt="flag"> <span class="align-self-center">&nbsp;German</span></a>
-                </div>
-            </li>
-
             <li class="nav-item theme-toggle-item">
                 <a href="javascript:void(0);" class="nav-link theme-toggle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -161,257 +162,7 @@
                 </a>
             </li>
 
-            <li class="nav-item dropdown notification-dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown"
-                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                         class="feather feather-bell">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                    <span class="badge badge-success"></span>
-                </a>
 
-                <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
-                    <div class="drodpown-title message">
-                        <h6 class="d-flex justify-content-between"><span class="align-self-center">Messages</span> <span
-                                class="badge badge-primary">9 Unread</span></h6>
-                    </div>
-                    <div class="notification-scroll">
-                        <div class="dropdown-item">
-                            <div class="media server-log">
-
-                                <img src="{{ asset('/theme/cork') }}/laravel/build/assets/profile-30.cc6a2fe6.png"
-                                     class="img-fluid me-2" alt="avatar">
-                                <div class="media-body">
-                                    <div class="data-info">
-                                        <h6 class="">Kara Young</h6>
-                                        <p class="">1 hr ago</p>
-                                    </div>
-
-                                    <div class="icon-status">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown-item">
-                            <div class="media ">
-                                <img src="{{ asset('/theme/cork') }}/laravel/build/assets/profile-15.875e870e.jpeg"
-                                     class="img-fluid me-2" alt="avatar">
-                                <div class="media-body">
-                                    <div class="data-info">
-                                        <h6 class="">Daisy Anderson</h6>
-                                        <p class="">8 hrs ago</p>
-                                    </div>
-
-                                    <div class="icon-status">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown-item">
-                            <div class="media file-upload">
-                                <img src="{{ asset('/theme/cork') }}/laravel/build/assets/profile-21.b531d25a.jpeg"
-                                     class="img-fluid me-2" alt="avatar">
-                                <div class="media-body">
-                                    <div class="data-info">
-                                        <h6 class="">Oscar Garner</h6>
-                                        <p class="">14 hrs ago</p>
-                                    </div>
-
-                                    <div class="icon-status">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="drodpown-title notification mt-2">
-                            <h6 class="d-flex justify-content-between"><span
-                                    class="align-self-center">Notifications</span> <span class="badge badge-secondary">16 New</span>
-                            </h6>
-                        </div>
-
-                        <div class="dropdown-item">
-                            <div class="media server-log">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-server">
-                                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                                    <line x1="6" y1="6" x2="6" y2="6"></line>
-                                    <line x1="6" y1="18" x2="6" y2="18"></line>
-                                </svg>
-                                <div class="media-body">
-                                    <div class="data-info">
-                                        <h6 class="">Server Rebooted</h6>
-                                        <p class="">45 min ago</p>
-                                    </div>
-
-                                    <div class="icon-status">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown-item">
-                            <div class="media file-upload">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-file-text">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                <div class="media-body">
-                                    <div class="data-info">
-                                        <h6 class="">Kelly Portfolio.pdf</h6>
-                                        <p class="">670 kb</p>
-                                    </div>
-
-                                    <div class="icon-status">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown-item">
-                            <div class="media ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-heart">
-                                    <path
-                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="media-body">
-                                    <div class="data-info">
-                                        <h6 class="">Licence Expiring Soon</h6>
-                                        <p class="">8 hrs ago</p>
-                                    </div>
-
-                                    <div class="icon-status">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </li>
-
-            <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
-                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar-container">
-                        <div class="avatar avatar-sm avatar-indicators avatar-online">
-                            <img alt="avatar"
-                                 src="{{ asset('/theme/cork') }}/laravel/build/assets/profile-30.cc6a2fe6.png"
-                                 class="rounded-circle">
-                        </div>
-                    </div>
-                </a>
-
-                <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
-                    <div class="user-profile-section">
-                        <div class="media mx-auto">
-                            <div class="emoji me-2">
-                                &#x1F44B;
-                            </div>
-                            <div class="media-body">
-                                <h5>Shaun Park</h5>
-                                <p>Project Leader</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <a href="user-profile.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-user">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                            <span>Profile</span>
-                        </a>
-                    </div>
-                    <div class="dropdown-item">
-                        <a href="app-mailbox.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-inbox">
-                                <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
-                                <path
-                                    d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
-                            </svg>
-                            <span>Inbox</span>
-                        </a>
-                    </div>
-                    <div class="dropdown-item">
-                        <a href="auth-boxed-lockscreen.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-lock">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                            <span>Lock Screen</span>
-                        </a>
-                    </div>
-                    <div class="dropdown-item">
-                        <a href="auth-boxed-signin.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-log-out">
-                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                <polyline points="16 17 21 12 16 7"></polyline>
-                                <line x1="21" y1="12" x2="9" y2="12"></line>
-                            </svg>
-                            <span>Log Out</span>
-                        </a>
-                    </div>
-                </div>
-            </li>
         </ul>
     </header>
 </div>                <!--  END NAVBAR  -->
@@ -470,14 +221,10 @@
             <div class="shadow-bottom"></div>
             <ul class="list-unstyled menu-categories" id="accordionExample">
                 <li class="menu active">
-                    <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="{{ route('dashboard') }}" data-bs-toggle="collapse" aria-expanded="false"
+                       class="dropdown-toggle">
                         <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-home">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
+                            <i data-feather="activity"></i>
                             <span>Dashboard</span>
                         </div>
                     </a>
@@ -495,60 +242,76 @@
                 </li>
 
                 <li class="menu ">
-                    <a href="/cork/laravel/modern-dark-menu/app/calendar" aria-expanded="false" class="dropdown-toggle">
+                    <a href="{{ route('akun') }}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-calendar">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                 stroke-linejoin="round" class="feather feather-user">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
                             </svg>
-                            <span>Calendar</span>
+                            <span>Tabel Akun</span>
                         </div>
                     </a>
                 </li>
 
                 <li class="menu ">
-                    <a href="#ecommerce" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="{{ route('akun') }}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-shopping-cart">
-                                <circle cx="9" cy="21" r="1"></circle>
-                                <circle cx="20" cy="21" r="1"></circle>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                 stroke-linejoin="round" class="feather feather-smartphone">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
                             </svg>
-                            <span>Ecommerce</span>
-                        </div>
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-chevron-right">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
+                            <span>Tabel Device</span>
                         </div>
                     </a>
-                    <ul class="collapse submenu list-unstyled " id="ecommerce" data-bs-parent="#accordionExample">
-                        <li class="">
-                            <a href="/cork/laravel/modern-dark-menu/app/ecommerce/shop"> Shop </a>
-                        </li>
-                        <li class="">
-                            <a href="/cork/laravel/modern-dark-menu/app/ecommerce/detail"> Product </a>
-                        </li>
-                        <li class="">
-                            <a href="/cork/laravel/modern-dark-menu/app/ecommerce/list"> List </a>
-                        </li>
-                        <li class="">
-                            <a href="/cork/laravel/modern-dark-menu/app/ecommerce/add"> Create </a>
-                        </li>
-                        <li class="">
-                            <a href="/cork/laravel/modern-dark-menu/app/ecommerce/edit"> Edit </a>
-                        </li>
-                    </ul>
                 </li>
 
+                <li class="menu ">
+                    <a href="{{ route('akun') }}" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-codesandbox">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                                <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                                <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                            <span>Tabel Parameter</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="menu menu-heading">
+                    <div class="heading">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-minus">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        <span>AUTHENTICATION</span></div>
+                </li>
+
+                <li class="menu ">
+                    <a href="javascript:void(0);" onclick="logout()" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            <span>Log out</span>
+                        </div>
+                    </a>
+                </li>
 
 
             </ul>
@@ -566,9 +329,9 @@
         <!--  BEGIN FOOTER  -->
         <div class="footer-wrapper">
             <div class="footer-section f-section-1">
-                <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank"
-                                                                                  href="{{ asset('/theme/cork') }}-admin/">DesignReset</a>,
-                    All rights reserved.</p>
+                <p class="">Copyright © <span class="dynamic-year">2023</span> <a target="_blank"
+                                                                                  href="{{ asset('/theme/cork') }}-admin/">AkbarMaulana</a>,
+                    2055201076.</p>
             </div>
             <div class="footer-section f-section-2">
                 <p class="">Coded with
@@ -616,6 +379,22 @@
 <link rel="modulepreload" href="{{ asset('/theme/cork') }}/laravel/build/assets/custom.f90a5296.js"/>
 <script type="module" src="{{ asset('/theme/cork') }}/laravel/build/assets/custom.f90a5296.js"></script>
 <script type="module" src="{{ asset('/theme/cork') }}/laravel/plugins/table/datatable/datatables.js"></script>
+<link rel="modulepreload" href="{{ asset('/theme/cork') }}/laravel/build/assets/scrollspyNav.2f130a3c.js"/>
+<script type="module" src="{{ asset('/theme/cork') }}/laravel/build/assets/scrollspyNav.2f130a3c.js"></script>
+
+<!-- Global Required Scripts Start -->
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/jquery-3.3.1.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/popper.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/bootstrap.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/perfect-scrollbar.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/jquery-ui.min.js"></script>
+<!-- Global Required Scripts End -->
+
+<!-- Weedo core JavaScript -->
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/framework.js"></script>
+
+<!-- Settings -->
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/settings.js"></script>
 
 <script type="module">
     // var e;
@@ -707,6 +486,104 @@
     });
 
     multiCheck(c3);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+    @if(session('sukses'))
+    document.querySelector('.widget-content .icon-success').addEventListener('click', function () {
+        Swal.fire({
+            title: 'Success',
+            text: '{{ session('sukses') }}',
+            type: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+            position: 'top-end',
+        })
+    });
+    @endif
+    @if(session('gagal'))
+    document.querySelector('.widget-content .icon-error').addEventListener('click', function () {
+        Swal.fire({
+            title: 'Maaf !!!',
+            text: '{{ session('gagal') }}',
+            type: 'error',
+            showConfirmButton: true,
+            timer: 3000,
+            position: 'top-end',
+        })
+    });
+    @endif
+
+    document.querySelector('.widget-content .warning.confirm').addEventListener('click', function () {
+        Swal.fire({
+            title: 'Anda yakin !',
+            text: "Akan keluar dari akun ini ?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Logout'
+        }).then((result) => {
+            if (result.value) {
+                var url = '{{ route('logout') }}';
+                location.replace(url);
+            }
+        })
+    })
+
+
+    function logout() {
+        Swal.fire({
+            title: 'Anda yakin !',
+            text: "Akan keluar dari akun ini ?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Logout'
+        }).then((result) => {
+            if (result.value) {
+                var url = '{{ route('logout') }}';
+                location.replace(url);
+            }
+        });
+    }
+
+
+    function hapus(url, pesan) {
+        Swal.fire({
+            title: 'Anda yakin !!!',
+            text: pesan,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!'
+        }).then((result) => {
+            if (result.value) {
+                location.replace(url);
+            }
+        });
+    }
+
+    function verifikasi(url, pesan) {
+        Swal.fire({
+            title: 'Anda yakin !!!',
+            text: pesan,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Verifikasi !'
+        }).then((result) => {
+            if (result.value) {
+                location.replace(url);
+            }
+        });
+    }
+
+
 </script>
 
 

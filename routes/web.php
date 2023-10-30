@@ -11,7 +11,7 @@ Route::get('/akun', [AdminController::class, "akun"])->name("akun");
 
 Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/logout', [AdminController::class, "logout"])->name("logout");
-    Route::get('/dashboard', [AdminController::class, "dashboard"])->name("dashboard");
+    Route::get('/', [AdminController::class, "dashboard"])->name("dashboard");
 
 //    Route::prefix('slide')->group(function () {
 //        $x = "slide";

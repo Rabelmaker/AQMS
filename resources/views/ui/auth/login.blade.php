@@ -24,6 +24,23 @@
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/auth-cover.4fc1d63d.css"/>
     <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/auth-cover.5fd79c32.css"/>
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/auth-cover.5fd79c32.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/plugins/sweetalerts2/sweetalerts2.css">
+    <link rel="preload" as="style"
+          href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.7039cdf5.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.7039cdf5.css"/>
+    <link rel="preload" as="style"
+          href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.fba5cd51.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-sweetalert.fba5cd51.css"/>
+
+    <link href="{{ asset('/theme/cork') }}laravel/build/vendors/iconic-fonts/font-awesome/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}laravel/build/vendors/iconic-fonts/flat-icons/flaticon.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('/theme/cork') }}laravel/build/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery UI -->
+    <link href="{{ asset('/theme/cork') }}laravel/build/css/jquery-ui.min.css" rel="stylesheet">
+    <!-- Weedo styles -->
+    <link href="{{ asset('/theme/cork') }}laravel/build/css/style.css" rel="stylesheet">
     <!--  END CUSTOM STYLE FILE  -->
     <!-- END GLOBAL MANDATORY STYLES -->
 </head>
@@ -126,10 +143,25 @@
 
 </div>
 
+<!-- Global Required Scripts Start -->
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/jquery-3.3.1.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/popper.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/bootstrap.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/perfect-scrollbar.js"> </script>
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/jquery-ui.min.js"> </script>
+<!-- Global Required Scripts End -->
+
+<!-- Weedo core JavaScript -->
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/framework.js"></script>
+
+<!-- Settings -->
+<script src="{{ asset('/theme/cork') }}/laravel/build/js/settings.js"></script>
+
+
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 <!--  END CUSTOM SCRIPTS FILE  -->
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 <script>
     @if(session('error'))
     $(document).ready(function () {
