@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function akun()
-    {
-        return view('ui.akun.index');
-    }
     public function dashboard()
     {
         if (Auth::guard('admin')->check()) {
@@ -57,36 +53,43 @@ class AdminController extends Controller
 
     //------------------------------------------------------------------------------------------------------------------
 
-    public function slide()
+    public function parameter()
     {
-        $data = DB::table('slide_tb')->where('id_admin', $this->idAdmin())->get();
-        return view('ui.slide.index', ['datas' => $data]);
+        $data = DB::table('pengukuran_tb')
+            ->join('alat_tb', 'pengukuran_tb.id_alat', '=', 'alat_tb.id')
+            ->get();
+        return view('ui.parameter.index', ['datas' => $data]);
     }
 
-    public function add_slide()
+    public function add_parameter()
     {
-        return view('ui.slide.add');
+        return view('ui.parameter.add');
     }
 
-    public function edit_slide($id)
+    public function edit_parameter($id)
     {
-        $data = DB::table('slide_tb')->where('id', $id)->first();
-        return view('ui.slide.edit', ['data' => $data]);
+        $data = DB::table('pengukuran_tb')->where('id', $id)->first();
+        return view('ui.parameter.edit', ['data' => $data]);
     }
 
-    public function post_slide(Request $request)
+    public function post_parameter(Request $request)
     {
         $data = [
-            'id_admin' => $this->idAdmin(),
-            'judul' => $request->judul,
-            'isi' => $request->isi
+            'id_alat' => $request->id_alat,
+            'temp' => $request->temp,
+            'hum' => $request->hum,
+            'co2' => $request->co2,
+            'pm25' => $request->pm25,
+            'pm10' => $request->pm10,
+            'voc' => $request->voc,
+            'ozon' => $request->ozon,
         ];
 
         if ($request->mode === 'add') {
-            $id = DB::table('slide_tb')->insertGetId($data);
+            $id = DB::table('pengukuran_tb')->insertGetId($data);
         } else {
             $id = $request->id;
-            DB::table('slide_tb')->where('id', $id)->update($data);
+            DB::table('pengukuran_tb')->where('id', $id)->update($data);
         }
 
         if ($request->has('gambar')) {
@@ -100,22 +103,149 @@ class AdminController extends Controller
             $nama = date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($tujuan, $nama);
 
-            DB::table('slide_tb')
+            DB::table('pengukuran_tb')
                 ->where('id', $id)
                 ->update(['gambar' => "$tujuan/$nama"]);
         }
 
-        return redirect(route('slide'))->with('sukses', 'Slide telah di perbarui');
+        return redirect(route('parameter'))->with('sukses', 'Parameter telah di perbarui');
     }
 
-    public function delete_slide($id)
+    public function delete_parameter($id)
     {
-        DB::table('slide_tb')
+        DB::table('pengukuran_tb')
             ->where('id', $id)
-            ->where('id_admin', $this->idAdmin())
             ->delete();
 
-        return redirect(route('slide'))->with('sukses', 'Slide telah di hapus');
+        return redirect(route('parameter'))->with('sukses', 'Parameter telah di hapus');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+
+    public function alat()
+    {
+        $data = DB::table('alat_tb')->get();
+        return view('ui.alat.index', ['datas' => $data]);
+    }
+
+    public function add_alat()
+    {
+        return view('ui.alat.add');
+    }
+
+    public function edit_alat($id)
+    {
+        $data = DB::table('alat_tb')->where('id', $id)->first();
+        return view('ui.alat.edit', ['data' => $data]);
+    }
+
+    public function post_alat(Request $request)
+    {
+        $data = [
+            'code' => $request->code,
+            'alamat' => $request->alamat,
+            'lat' => $request->lat,
+            'lon' => $request->lon,
+        ];
+
+        if ($request->mode === 'add') {
+            $id = DB::table('alat_tb')->insertGetId($data);
+        } else {
+            $id = $request->id;
+            DB::table('alat_tb')->where('id', $id)->update($data);
+        }
+
+        if ($request->has('gambar')) {
+
+            request()->validate([
+                'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ]);
+
+            $file = $request->file('gambar');
+            $tujuan = "img/slide";
+            $nama = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($tujuan, $nama);
+
+            DB::table('alat_tb')
+                ->where('id', $id)
+                ->update(['gambar' => "$tujuan/$nama"]);
+        }
+
+        return redirect(route('alat'))->with('sukses', 'alat telah di perbarui');
+    }
+
+    public function delete_alat($id)
+    {
+        DB::table('alat_tb')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect(route('alat'))->with('sukses', 'alat telah di hapus');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+
+    public function akun()
+    {
+        $data = DB::table('alat_tb')->get();
+        return view('ui.alat.index', ['datas' => $data]);
+    }
+
+    public function add_akun()
+    {
+        return view('ui.alat.add');
+    }
+
+    public function edit_akun($id)
+    {
+        $data = DB::table('alat_tb')->where('id', $id)->first();
+        return view('ui.alat.edit', ['data' => $data]);
+    }
+
+    public function post_akun(Request $request)
+    {
+        $data = [
+            'code' => $request->code,
+            'alamat' => $request->alamat,
+            'lat' => $request->lat,
+            'lon' => $request->lon,
+        ];
+
+        if ($request->mode === 'add') {
+            $id = DB::table('alat_tb')->insertGetId($data);
+        } else {
+            $id = $request->id;
+            DB::table('alat_tb')->where('id', $id)->update($data);
+        }
+
+        if ($request->has('gambar')) {
+
+            request()->validate([
+                'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ]);
+
+            $file = $request->file('gambar');
+            $tujuan = "img/slide";
+            $nama = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($tujuan, $nama);
+
+            DB::table('alat_tb')
+                ->where('id', $id)
+                ->update(['gambar' => "$tujuan/$nama"]);
+        }
+
+        return redirect(route('alat'))->with('sukses', 'alat telah di perbarui');
+    }
+
+    public function delete_akun($id)
+    {
+        DB::table('alat_tb')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect(route('alat'))->with('sukses', 'alat telah di hapus');
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -128,106 +258,11 @@ class AdminController extends Controller
     }
     //------------------------------------------------------------------------------------------------------------------
 
-    function idAdmin()
-    {
-        return Auth::guard('admin')->user()->id;
-    }
-
     public function md5Pass($pass)
     {
         return md5("$pass@skripsiakbar");
     }
 
-    public function push_notifikasi($id_akun, $judul, $pesan)
-    {
-        $akun = DB::table('admin_tb')->find($id_akun);
-        $app_name = DB::table('setting_tb')->find($this->idAdmin())->app_name;
-
-        $key = "key=AAAA_bBYUFs:APA91bHGTugGFDhQK61yjefK6Xre3BR98P4sHw8uZy3cqTcyBwErpJ1VezpzDS1iNE003HObVR_WkcrM87km0G-xZsFg_24kSTijW2F_SSORMSUweojkCTlF7xndgQB55PGn1Lbfc0B1";
-
-        $notifikasi = [
-            'to' => $akun->token,
-            'notification' => [
-                'title' => "$judul - $app_name",
-                'body' => $pesan,
-                'android_channel_id' => 'high_importance_channel',
-            ],
-            "priority" => "high",
-            "android" => [
-                "priority" => "high"
-            ]
-        ];
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://fcm.googleapis.com/fcm/send",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($notifikasi, JSON_THROW_ON_ERROR),
-            CURLOPT_HTTPHEADER => [
-                "Authorization: $key",
-                "Content-Type: application/json; charset=UTF-8"
-            ],
-        ]);
-
-        curl_exec($curl);
-        curl_error($curl);
-        curl_close($curl);
-
-        return true;
-    }
-
-    public function push_notifikasi_masal($judul, $pesan)
-    {
-        $app_name = DB::table('setting_tb')->find($this->idAdmin())->app_name;
-        $akun = DB::table('akun_tb')
-            ->where('id_admin', $this->idAdmin())
-            ->whereNotNull('token')
-            ->pluck('token');
-
-        $key = "key=AAAA_bBYUFs:APA91bHGTugGFDhQK61yjefK6Xre3BR98P4sHw8uZy3cqTcyBwErpJ1VezpzDS1iNE003HObVR_WkcrM87km0G-xZsFg_24kSTijW2F_SSORMSUweojkCTlF7xndgQB55PGn1Lbfc0B1";
-
-        $notifikasi = [
-            'registration_ids' => $akun,
-            'notification' => [
-                'title' => "$judul - $app_name",
-                'body' => $pesan,
-                'android_channel_id' => 'high_importance_channel',
-            ],
-            "priority" => "high",
-            "android" => [
-                "priority" => "high"
-            ]
-        ];
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://fcm.googleapis.com/fcm/send",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($notifikasi, JSON_THROW_ON_ERROR),
-            CURLOPT_HTTPHEADER => [
-                "Authorization: $key",
-                "Content-Type: application/json; charset=UTF-8"
-            ],
-        ]);
-
-        curl_exec($curl);
-        curl_error($curl);
-        curl_close($curl);
-
-        return true;
-    }
 
 }
 
