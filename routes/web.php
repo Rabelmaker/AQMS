@@ -31,6 +31,15 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('/delete/{id}', [AdminController::class, "delete_$x"])->name("delete_$x");
     });
 
+    Route::prefix('akun')->group(function () {
+        $x = "akun";
+        Route::get('/', [AdminController::class, $x])->name($x);
+        Route::post('/', [AdminController::class, "post_$x"])->name("post_$x");
+        Route::get('/add', [AdminController::class, "add_$x"])->name("add_$x");
+        Route::get('/edit/{id}', [AdminController::class, "edit_$x"])->name("edit_$x");
+        Route::get('/delete/{id}', [AdminController::class, "delete_$x"])->name("delete_$x");
+    });
+
 
 });
 

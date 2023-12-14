@@ -20,11 +20,11 @@
                                     <th class="text-center">Code Alat</th>
                                     <th class="text-center">Temperature</th>
                                     <th class="text-center">Humadity</th>
-                                    <th class="text-center">Co2</th>
                                     <th class="text-center">PM 2.5</th>
                                     <th class="text-center">PM 10</th>
                                     <th class="text-center">Ozon</th>
                                     <th class="text-center">VOC</th>
+                                    <th class="text-center">Kualitas Udara</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -35,25 +35,13 @@
                                         <td class="text-center">{{ $data->code }}</td>
                                         <td class="text-center">{{ $data->temp }}</td>
                                         <td class="text-center">{{ $data->hum }}</td>
-                                        <td class="text-center">{{ $data->co2 }}</td>
                                         <td class="text-center">{{ $data->pm25 }}</td>
                                         <td class="text-center">{{ $data->pm10 }}</td>
                                         <td class="text-center">{{ $data->ozon }}</td>
                                         <td class="text-center">{{ $data->voc }}</td>
+                                        <td class="text-center">{{ $data->kualitas }}</td>
                                         <td class="text-center">
                                             <ul class="table-controls">
-                                                <li><a href="   {{ route('edit_parameter', $data->id) }}" class="bs-tooltip"
-                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
-                                                       data-original-title="Edit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                             viewBox="0 0 24 24" fill="none" stroke="green"
-                                                             stroke-width="2" stroke-linecap="round"
-                                                             stroke-linejoin="round"
-                                                             class="feather feather-edit-2 p-1 br-8 mb-1">
-                                                            <path
-                                                                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                                                        </svg>
-                                                    </a></li>
                                                 <li><a href="{{ route('delete_parameter', $data->id) }}" class="bs-tooltip"
                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
                                                        data-original-title="Delete">

@@ -52,9 +52,6 @@
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/scrollspyNav.4a7b7b07.css"/>
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/scrollspyNav.4a7b7b07.css"/>
 
-
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <!--  BEGIN CUSTOM STYLE FILE  -->
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/plugins/apex/apexcharts.css">
 
     <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/list-group.8fe0ce4c.css"/>
@@ -78,17 +75,41 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/theme/cork') }}laravel/build/vendors/iconic-fonts/flat-icons/flaticon.css">
-    <!-- Bootstrap core CSS -->
+
     <link href="{{ asset('/theme/cork') }}laravel/build/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery UI -->
+
     <link href="{{ asset('/theme/cork') }}laravel/build/css/jquery-ui.min.css" rel="stylesheet">
-    <!-- Weedo styles -->
+
     <link href="{{ asset('/theme/cork') }}laravel/build/css/style.css" rel="stylesheet">
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/carousel.c75f7dc1.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/carousel.c75f7dc1.css"/>
+    <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/modal.792ba9aa.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/modal.792ba9aa.css"/>
+    <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/tabs.b002aa95.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/tabs.b002aa95.css"/>
+    <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/carousel.d818448e.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/carousel.d818448e.css"/>
+    <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/modal.fe8cc74a.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/modal.fe8cc74a.css"/>
+    <link rel="preload" as="style" href="{{ asset('/theme/cork') }}/laravel/build/assets/tabs.6ae6b027.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/tabs.6ae6b027.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/plugins/animate/animate.css">
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/plugins/filepond/filepond.min.css">
+    <link rel="stylesheet"
+          href="{{ asset('/theme/cork') }}/laravel/plugins/filepond/FilePondPluginImagePreview.min.css">
+    <link rel="preload" as="style"
+          href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-filepond.9e9ad299.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-filepond.9e9ad299.css"/>
+    <link rel="preload" as="style"
+          href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-filepond.ba473b1c.css"/>
+    <link rel="stylesheet" href="{{ asset('/theme/cork') }}/laravel/build/assets/custom-filepond.ba473b1c.css"/>
     <!--  END CUSTOM STYLE FILE  -->
     <!-- END GLOBAL MANDATORY STYLES -->
+
 </head>
-<!--  END CUSTOM STYLE FILE  -->
-<!-- END GLOBAL MANDATORY STYLES -->
+
 </head>
 <body class="layout-boxed">
 
@@ -242,7 +263,8 @@
                 </li>
 
                 <li class="menu ">
-                    <a href="{{ route('akun') }}" aria-expanded="{{ request()->routeIs('akun') ? 'true' : 'false' }}" class="dropdown-toggle">
+                    <a href="{{ route('akun') }}" aria-expanded="{{ request()->routeIs('akun') ? 'true' : 'false' }}"
+                       class="dropdown-toggle">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -256,7 +278,8 @@
                 </li>
 
                 <li class="menu ">
-                    <a href="{{ route('alat') }}" aria-expanded="{{ request()->routeIs('alat') ? 'true' : 'false' }}" class="dropdown-toggle">
+                    <a href="{{ route('alat') }}" aria-expanded="{{ request()->routeIs('alat') ? 'true' : 'false' }}"
+                       class="dropdown-toggle">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -270,7 +293,8 @@
                 </li>
 
                 <li class="menu ">
-                    <a href="{{ route('parameter') }}" aria-expanded="{{ request()->routeIs('parameter') ? 'true' : 'false' }}" class="dropdown-toggle">
+                    <a href="{{ route('parameter') }}"
+                       aria-expanded="{{ request()->routeIs('parameter') ? 'true' : 'false' }}" class="dropdown-toggle">
                         <div class="">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -396,6 +420,16 @@
 <!-- Settings -->
 <script src="{{ asset('/theme/cork') }}/laravel/build/js/settings.js"></script>
 
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/editors/quill/quill.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/filepond.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/FilePondPluginFileValidateType.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/FilePondPluginImageExifOrientation.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/FilePondPluginImagePreview.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/FilePondPluginImageCrop.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/FilePondPluginImageResize.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/FilePondPluginImageTransform.min.js"></script>
+<script src="{{ asset('/theme/cork') }}/laravel/plugins/filepond/filepondPluginFileValidateSize.min.js"></script>
+
 <script type="module">
     // var e;
     const c1 = $('#style-1').DataTable({
@@ -487,11 +521,10 @@
 
     multiCheck(c3);
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
     @if(session('sukses'))
-    document.querySelector('.widget-content .icon-success').addEventListener('click', function () {
+    $(document).ready(function () {
         Swal.fire({
             title: 'Success',
             text: '{{ session('sukses') }}',
@@ -499,39 +532,21 @@
             showConfirmButton: false,
             timer: 3000,
             position: 'top-end',
-        })
+        });
     });
     @endif
     @if(session('gagal'))
-    document.querySelector('.widget-content .icon-error').addEventListener('click', function () {
+    $(document).ready(function () {
         Swal.fire({
-            title: 'Maaf !!!',
+            title: 'Error',
             text: '{{ session('gagal') }}',
             type: 'error',
-            showConfirmButton: true,
+            showConfirmButton: false,
             timer: 3000,
             position: 'top-end',
-        })
+        });
     });
     @endif
-
-    document.querySelector('.widget-content .warning.confirm').addEventListener('click', function () {
-        Swal.fire({
-            title: 'Anda yakin !',
-            text: "Akan keluar dari akun ini ?",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Logout'
-        }).then((result) => {
-            if (result.value) {
-                var url = '{{ route('logout') }}';
-                location.replace(url);
-            }
-        })
-    })
-
 
     function logout() {
         Swal.fire({
@@ -543,13 +558,12 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, Logout'
         }).then((result) => {
-            if (result.value) {
+            if(result.value){
                 var url = '{{ route('logout') }}';
                 location.replace(url);
             }
         });
     }
-
 
     function hapus(url, pesan) {
         Swal.fire({
@@ -583,6 +597,74 @@
         });
     }
 
+
+</script>
+<script type="module">
+
+    function addVideoInModal(btnSelector, videoSource, modalSelector, iframeHeight, iframeWidth, iframeContainer) {
+        var myModal = new bootstrap.Modal(document.getElementById(modalSelector), {
+            keyboard: false
+        })
+        document.querySelector(btnSelector).addEventListener('click', function() {
+            var src = videoSource;
+            myModal.show('show');
+            var ifrm = document.createElement("iframe");
+            ifrm.setAttribute("src", src);
+            ifrm.setAttribute('width', iframeWidth);
+            ifrm.setAttribute('height', iframeHeight);
+            ifrm.style.border = "0";
+            ifrm.setAttribute("allow", "encrypted-media");
+            document.querySelector(iframeContainer).appendChild(ifrm);
+        })
+    }
+
+    addVideoInModal('#yt-video-link', 'https://www.youtube.com/embed/YE7VzlLtp-4', 'videoMedia1', '315', '560', '.yt-container')
+
+    addVideoInModal('#vimeo-video-link', 'https://player.vimeo.com/video/1084537', 'videoMedia2', '315', '560', '.vimeo-container')
+
+
+
+
+    /**
+     * ==================
+     * Single File Upload
+     * ==================
+     */
+
+    // We register the plugins required to do
+    // image previews, cropping, resizing, etc.
+    FilePond.registerPlugin(
+        FilePondPluginFileValidateType,
+        FilePondPluginImageExifOrientation,
+        FilePondPluginImagePreview,
+        FilePondPluginImageCrop,
+        FilePondPluginImageResize,
+        FilePondPluginImageTransform,
+        //   FilePondPluginImageEdit
+    );
+
+    // Select the file input and use
+    // create() to turn it into a pond
+    var modalImage = FilePond.create(
+        document.querySelector('.filepond'),
+        {
+            // labelIdle: `<span class="no-image-placeholder"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span> <p class="drag-para">Drag & Drop your picture or <span class="filepond--label-action" tabindex="0">Browse</span></p>`,
+            imagePreviewHeight: 170,
+            imageCropAspectRatio: '1:1',
+            imageResizeTargetWidth: 200,
+            imageResizeTargetHeight: 200,
+            stylePanelLayout: 'compact circle',
+            styleLoadIndicatorPosition: 'center bottom',
+            styleProgressIndicatorPosition: 'right bottom',
+            styleButtonRemoveItemPosition: 'left bottom',
+            styleButtonProcessItemPosition: 'right bottom',
+        }
+    );
+
+    const myModalEl = document.getElementById('profileModal')
+    myModalEl.addEventListener('shown.bs.modal', event => {
+        modalImage.addFiles("{{ asset('/theme/cork') }}/laravel/build/assets/drag-1.abc14241.jpeg");
+    })
 
 </script>
 

@@ -78,11 +78,11 @@ class AdminController extends Controller
             'id_alat' => $request->id_alat,
             'temp' => $request->temp,
             'hum' => $request->hum,
-            'co2' => $request->co2,
             'pm25' => $request->pm25,
             'pm10' => $request->pm10,
             'voc' => $request->voc,
             'ozon' => $request->ozon,
+            'kualitas' => $request->kualitas,
         ];
 
         if ($request->mode === 'add') {
@@ -189,35 +189,33 @@ class AdminController extends Controller
 
     public function akun()
     {
-        $data = DB::table('alat_tb')->get();
-        return view('ui.alat.index', ['datas' => $data]);
+        $data = DB::table('admin_tb')->get();
+        return view('ui.akun.index', ['datas' => $data]);
     }
 
     public function add_akun()
     {
-        return view('ui.alat.add');
+        return view('ui.akun.add');
     }
 
     public function edit_akun($id)
     {
-        $data = DB::table('alat_tb')->where('id', $id)->first();
-        return view('ui.alat.edit', ['data' => $data]);
+        $data = DB::table('admin_tb')->where('id', $id)->first();
+        return view('ui.akun.edit', ['data' => $data]);
     }
 
     public function post_akun(Request $request)
     {
         $data = [
-            'code' => $request->code,
-            'alamat' => $request->alamat,
-            'lat' => $request->lat,
-            'lon' => $request->lon,
+            'nama' => $request->nama,
+            'username' => $request->username,
         ];
 
         if ($request->mode === 'add') {
-            $id = DB::table('alat_tb')->insertGetId($data);
+            $id = DB::table('admin_tb')->insertGetId($data);
         } else {
             $id = $request->id;
-            DB::table('alat_tb')->where('id', $id)->update($data);
+            DB::table('admin_tb')->where('id', $id)->update($data);
         }
 
         if ($request->has('gambar')) {
@@ -236,16 +234,16 @@ class AdminController extends Controller
                 ->update(['gambar' => "$tujuan/$nama"]);
         }
 
-        return redirect(route('alat'))->with('sukses', 'alat telah di perbarui');
+        return redirect(route('akun'))->with('sukses', 'alat telah di perbarui');
     }
 
     public function delete_akun($id)
     {
-        DB::table('alat_tb')
+        DB::table('admin_tb')
             ->where('id', $id)
             ->delete();
 
-        return redirect(route('alat'))->with('sukses', 'alat telah di hapus');
+        return redirect(route('akun'))->with('sukses', 'akun telah di hapus');
     }
 
     //------------------------------------------------------------------------------------------------------------------
