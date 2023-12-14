@@ -70,7 +70,6 @@
       'HND': {fillKey: 'eq50' },
       'BLZ': {fillKey: 'pink' },
       'GRL': {fillKey: 'eq0' },
-      'CAN': {fillKey: 'gt50' }
     }
   });
 

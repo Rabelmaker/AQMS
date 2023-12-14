@@ -74,8 +74,8 @@
 
                     <div class="position-relative">
 
-                        <img src="{{ asset('/theme/cork') }}/laravel/build/assets/auth-cover.d713b1d6.svg"
-                             alt="auth-img">
+                        <img src="{{ asset('/theme/cork') }}/laravel/build/assets/logo_unilak.png"
+                             alt="auth-img" style="width: 50%; height: auto;">
 
                         <h2 class="mt-5 text-white font-weight-bolder px-2">Join the community of expert developers</h2>
                         <p class="text-white px-2">It is easy to set up with great customer experience. Start your 7-day
