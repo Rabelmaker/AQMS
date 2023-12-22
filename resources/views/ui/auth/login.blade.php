@@ -77,9 +77,8 @@
                         <img src="{{ asset('/theme/cork') }}/laravel/build/assets/logo_unilak.png"
                              alt="auth-img" style="width: 50%; height: auto;">
 
-                        <h2 class="mt-5 text-white font-weight-bolder px-2">Join the community of expert developers</h2>
-                        <p class="text-white px-2">It is easy to set up with great customer experience. Start your 7-day
-                            free trial</p>
+                        <h2 class="mt-5 text-white font-weight-bolder px-2">Akbar Maulana - 2055201076</h2>
+                        <p class="text-white px-2">Rancang Bangun Monitoring Kualitas Udara Berbasis Sensor Menggunakan Metode Fuzzy Logic</p>
                     </div>
 
                 </div>

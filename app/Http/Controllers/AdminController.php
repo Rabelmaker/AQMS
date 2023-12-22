@@ -63,7 +63,8 @@ class AdminController extends Controller
 
     public function add_parameter()
     {
-        return view('ui.parameter.add');
+        $alatData = DB::table('alat_tb')->get(); // Ambil semua data alat dari database
+        return view('ui.parameter.add', ['alatDatas' => $alatData]);
     }
 
     public function edit_parameter($id)
@@ -82,8 +83,17 @@ class AdminController extends Controller
             'pm10' => $request->pm10,
             'voc' => $request->voc,
             'ozon' => $request->ozon,
-            'kualitas' => $request->kualitas,
         ];
+
+        // Menghitung ISPU
+        $ispu = $this->hitungISPU(
+            $request->pm10,
+            $request->pm25,
+            $request->ozon,
+            $request->voc
+        );
+
+        $data['kualitas'] = $ispu; // Simpan hasil perhitungan ISPU ke dalam 'kualitas'
 
         if ($request->mode === 'add') {
             $id = DB::table('pengukuran_tb')->insertGetId($data);
@@ -93,7 +103,6 @@ class AdminController extends Controller
         }
 
         if ($request->has('gambar')) {
-
             request()->validate([
                 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             ]);
@@ -119,6 +128,160 @@ class AdminController extends Controller
 
         return redirect(route('parameter'))->with('sukses', 'Parameter telah di hapus');
     }
+
+    public function bataspm10($pm10)
+    {
+        if ($pm10<=50){
+            return [
+                "bawah" => 0,
+                "atas" => 50
+            ];
+        }
+        if ($pm10<=150){
+            return [
+                "bawah" => 50,
+                "atas" => 150
+            ];
+        }
+        if ($pm10<=350){
+            return [
+                "bawah" => 150,
+                "atas" => 350
+            ];
+        }
+        if ($pm10<=420){
+            return [
+                "bawah" => 350,
+                "atas" => 420
+            ];
+        }
+        if ($pm10<=500){
+            return [
+                "bawah" => 420,
+                "atas" => 500,
+            ];
+        }
+        return [
+            "bawah" => 500,
+            "atas" => 9999
+        ];
+
+    }
+
+    public function bataspm25($pm25)
+    {
+        if ($pm25<=15.5){
+            return [
+                "bawah" => 0,
+                "atas" => 15.5
+            ];
+        }
+        if ($pm25<=55.4){
+            return [
+                "bawah" => 15.5,
+                "atas" => 55.4
+            ];
+        }
+        if ($pm25<=150.4){
+            return [
+                "bawah" => 55.4,
+                "atas" => 150.4
+            ];
+        }
+        if ($pm25<=250.4){
+            return [
+                "bawah" => 150.4,
+                "atas" => 250.4
+            ];
+        }
+        if ($pm25<=500){
+            return [
+                "bawah" => 250.4,
+                "atas" => 500,
+            ];
+        }
+        return [
+            "bawah" => 500,
+            "atas" => 9999
+        ];
+    }
+
+    public function batasozon($ozon)
+    {
+        if ($ozon<=120){
+            return [
+                "bawah" => 0,
+                "atas" => 120
+            ];
+        }
+        if ($ozon<=235){
+            return [
+                "bawah" => 120,
+                "atas" => 235
+            ];
+        }
+        if ($ozon<=400){
+            return [
+                "bawah" => 235,
+                "atas" => 400
+            ];
+        }
+        if ($ozon<=800){
+            return [
+                "bawah" => 400,
+                "atas" => 800
+            ];
+        }
+        if ($ozon<=1000){
+            return [
+                "bawah" => 800,
+                "atas" => 1000,
+            ];
+        }
+        return [
+            "bawah" => 1000,
+            "atas" => 9999
+        ];
+    }
+
+    public function batasvoc($voc)
+    {
+        if ($voc<=45){
+            return [
+                "bawah" => 0,
+                "atas" => 45
+            ];
+        }
+        if ($voc<=100){
+            return [
+                "bawah" => 45,
+                "atas" => 100
+            ];
+        }
+        if ($voc<=215){
+            return [
+                "bawah" => 100,
+                "atas" => 215
+            ];
+        }
+        if ($voc<=432){
+            return [
+                "bawah" => 215,
+                "atas" => 432
+            ];
+        }
+        if ($voc<=648){
+            return [
+                "bawah" => 432,
+                "atas" => 648,
+            ];
+        }
+        return [
+            "bawah" => 648,
+            "atas" => 9999
+        ];
+    }
+
 
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
