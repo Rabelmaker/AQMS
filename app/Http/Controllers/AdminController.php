@@ -86,14 +86,11 @@ class AdminController extends Controller
         ];
 
         // Menghitung ISPU
-        $ispu = $this->hitungISPU(
+        $ispupm10 = $this->hitungispupm10(
             $request->pm10,
-            $request->pm25,
-            $request->ozon,
-            $request->voc
         );
 
-        $data['kualitas'] = $ispu; // Simpan hasil perhitungan ISPU ke dalam 'kualitas'
+        $data['kualitas'] = $ispupm10; // Simpan hasil perhitungan ISPU ke dalam 'kualitas'
 
         if ($request->mode === 'add') {
             $id = DB::table('pengukuran_tb')->insertGetId($data);
@@ -127,6 +124,18 @@ class AdminController extends Controller
             ->delete();
 
         return redirect(route('parameter'))->with('sukses', 'Parameter telah di hapus');
+    }
+
+    public function hitungispupm10($pm10){
+        $Ia = $this->batasispupm10($pm10)["atas"];
+        $Ib = $this->batasispupm10($pm10)["bawah"];
+        $Xa = $this->bataspm10($pm10)["atas"];
+        $Xb = $this->bataspm10($pm10)["bawah"];
+        $Xx = $pm10;
+
+        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+
+        return $ispu;
     }
 
     public function bataspm10($pm10)
@@ -279,6 +288,159 @@ class AdminController extends Controller
         return [
             "bawah" => 648,
             "atas" => 9999
+        ];
+    }
+
+    public function batasispupm10($pm10)
+    {
+        if ($pm10<=50){
+            return [
+                "ispubawah" => 0,
+                "ispuatas" => 50
+            ];
+        }
+        if ($pm10<=150){
+            return [
+                "ispubawah" => 51,
+                "ispuatas" => 100
+            ];
+        }
+        if ($pm10<=350){
+            return [
+                "ispubawah" => 101,
+                "ispuatas" => 200
+            ];
+        }
+        if ($pm10<=420){
+            return [
+                "ispubawah" => 201,
+                "ispuatas" => 300
+            ];
+        }
+        if ($pm10<=500){
+            return [
+                "ispubawah" => 301,
+                "ispuatas" => 500,
+            ];
+        }
+        return [
+            "bawah" => 501,
+            "atas" => 9999
+        ];
+
+    }
+
+    public function batasispupm25($pm25)
+    {
+        if ($pm25<=15.5){
+            return [
+                "ispubawah" => 0,
+                "ispuatas" => 50
+            ];
+        }
+        if ($pm25<=55.4){
+            return [
+                "ispubawah" => 51,
+                "ispuatas" => 100
+            ];
+        }
+        if ($pm25<=150.4){
+            return [
+                "ispubawah" => 101,
+                "ispuatas" => 200
+            ];
+        }
+        if ($pm25<=250.4){
+            return [
+                "ispubawah" => 201,
+                "ispuatas" => 300
+            ];
+        }
+        if ($pm25<=500){
+            return [
+                "ispubawah" => 301,
+                "ispuatas" => 500,
+            ];
+        }
+        return [
+            "ispubawah" => 501,
+            "ispuatas" => 9999
+        ];
+    }
+
+    public function batasispuozon($ozon)
+    {
+        if ($ozon<=120){
+            return [
+                "ispubawah" => 0,
+                "ispuatas" => 50
+            ];
+        }
+        if ($ozon<=235){
+            return [
+                "ispubawah" => 51,
+                "ispuatas" => 100
+            ];
+        }
+        if ($ozon<=400){
+            return [
+                "ispubawah" => 101,
+                "ispuatas" => 200
+            ];
+        }
+        if ($ozon<=800){
+            return [
+                "ispubawah" => 201,
+                "ispuatas" => 300
+            ];
+        }
+        if ($ozon<=1000){
+            return [
+                "ispubawah" => 301,
+                "ispuatas" => 500,
+            ];
+        }
+        return [
+            "ispubawah" => 501,
+            "ispuatas" => 9999
+        ];
+    }
+
+    public function batasispuvoc($voc)
+    {
+        if ($voc<=45){
+            return [
+                "ispubawah" => 0,
+                "ispuatas" => 50
+            ];
+        }
+        if ($voc<=100){
+            return [
+                "ispubawah" => 51,
+                "ispuatas" => 100
+            ];
+        }
+        if ($voc<=215){
+            return [
+                "ispubawah" => 101,
+                "ispuatas" => 200
+            ];
+        }
+        if ($voc<=432){
+            return [
+                "ispubawah" => 201,
+                "ispuatas" => 300
+            ];
+        }
+        if ($voc<=648){
+            return [
+                "ispubawah" => 301,
+                "ispuatas" => 500,
+            ];
+        }
+        return [
+            "ispubawah" => 501,
+            "ispuatas" => 9999
         ];
     }
 
