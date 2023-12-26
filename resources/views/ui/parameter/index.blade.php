@@ -25,10 +25,6 @@
                                     <th class="text-center">PM 10</th>
                                     <th class="text-center">Ozon</th>
                                     <th class="text-center">VOC</th>
-                                    <th class="text-center">ISPU PM 2.5</th>
-                                    <th class="text-center">ISPU PM 10</th>
-                                    <th class="text-center">ISPU Ozon</th>
-                                    <th class="text-center">ISPU VOC</th>
                                     <th class="text-center">Kualitas Udara</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -44,10 +40,6 @@
                                         <td class="text-center">{{ $data->pm10 }}</td>
                                         <td class="text-center">{{ $data->ozon }}</td>
                                         <td class="text-center">{{ $data->voc }}</td>
-                                        <td class="text-center">{{ $data->ispupm25 }}</td>
-                                        <td class="text-center">{{ $data->ispupm10 }}</td>
-                                        <td class="text-center">{{ $data->ispuozon }}</td>
-                                        <td class="text-center">{{ $data->ispuvoc }}</td>
                                         <td class="text-center">
                                             <div
                                                 class="card @if($data->kualitas == "Baik") bg-success
