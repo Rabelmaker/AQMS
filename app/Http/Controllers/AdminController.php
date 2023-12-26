@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\select;
 
 class AdminController extends Controller
 {
@@ -63,7 +64,7 @@ class AdminController extends Controller
 
     public function add_parameter()
     {
-        $alatData = DB::table('alat_tb')->get(); // Ambil semua data alat dari database
+        $alatData = DB::table('alat_tb')->select('code','id')->get(); // Ambil semua data alat dari database
         return view('ui.parameter.add', ['alatDatas' => $alatData]);
     }
 
@@ -86,11 +87,29 @@ class AdminController extends Controller
         ];
 
         // Menghitung ISPU
-        $ispupm10 = $this->hitungispupm10(
-            $request->pm10,
-        );
+        $ispupm10 = $this->hitungispupm10($request->pm10);
+        $ispupm25 = $this->hitungispupm25($request->pm25);
+        $ispuozon = $this->hitungispuozon($request->ozon);
+        $ispuvoc = $this->hitungispuvoc($request->voc);
 
-        $data['kualitas'] = $ispupm10; // Simpan hasil perhitungan ISPU ke dalam 'kualitas'
+        $data['ispupm10'] = $ispupm10;
+        $data['ispupm25'] = $ispupm25;
+        $data['ispuozon'] = $ispuozon;
+        $data['ispuvoc'] = $ispuvoc;
+
+        $nilai_tertinggi = max($ispupm10, $ispupm25, $ispuozon, $ispuvoc);
+
+        if ($nilai_tertinggi <= 50) {
+            $data['kualitas'] = 'Baik'; // Hijau
+        } elseif ($nilai_tertinggi <= 100) {
+            $data['kualitas'] = 'Sedang'; // Biru
+        } elseif ($nilai_tertinggi <= 200) {
+            $data['kualitas'] = 'Tidak Sehat'; // Kuning
+        } elseif ($nilai_tertinggi <= 300) {
+            $data['kualitas'] = 'Sangat Tidak Sehat'; // Merah
+        } else {
+            $data['kualitas'] = 'Berbahaya'; // Hitam
+        }
 
         if ($request->mode === 'add') {
             $id = DB::table('pengukuran_tb')->insertGetId($data);
@@ -127,11 +146,47 @@ class AdminController extends Controller
     }
 
     public function hitungispupm10($pm10){
-        $Ia = $this->batasispupm10($pm10)["atas"];
-        $Ib = $this->batasispupm10($pm10)["bawah"];
+        $Ia = $this->batasispupm10($pm10)["ispuatas"];
+        $Ib = $this->batasispupm10($pm10)["ispubawah"];
         $Xa = $this->bataspm10($pm10)["atas"];
         $Xb = $this->bataspm10($pm10)["bawah"];
         $Xx = $pm10;
+
+        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+
+        return $ispu;
+    }
+
+    public function hitungispupm25($pm25){
+        $Ia = $this->batasispupm25($pm25)["ispuatas"];
+        $Ib = $this->batasispupm25($pm25)["ispubawah"];
+        $Xa = $this->bataspm25($pm25)["atas"];
+        $Xb = $this->bataspm25($pm25)["bawah"];
+        $Xx = $pm25;
+
+        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+
+        return $ispu;
+    }
+
+    public function hitungispuozon($ozon){
+        $Ia = $this->batasispuozon($ozon)["ispuatas"];
+        $Ib = $this->batasispuozon($ozon)["ispubawah"];
+        $Xa = $this->batasozon($ozon)["atas"];
+        $Xb = $this->batasozon($ozon)["bawah"];
+        $Xx = $ozon;
+
+        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+
+        return $ispu;
+    }
+
+    public function hitungispuvoc($voc){
+        $Ia = $this->batasispuvoc($voc)["ispuatas"];
+        $Ib = $this->batasispuvoc($voc)["ispubawah"];
+        $Xa = $this->batasvoc($voc)["atas"];
+        $Xb = $this->batasvoc($voc)["bawah"];
+        $Xx = $voc;
 
         $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
 
@@ -324,8 +379,8 @@ class AdminController extends Controller
             ];
         }
         return [
-            "bawah" => 501,
-            "atas" => 9999
+            "ispubawah" => 501,
+            "ispuatas" => 9999
         ];
 
     }

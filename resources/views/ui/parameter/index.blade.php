@@ -1,5 +1,6 @@
 @extends('layout.index')
 @section('content')
+
     <div class="layout-px-spacing">
         <div class="middle-content container-xxl p-0">
             <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -24,6 +25,10 @@
                                     <th class="text-center">PM 10</th>
                                     <th class="text-center">Ozon</th>
                                     <th class="text-center">VOC</th>
+                                    <th class="text-center">ISPU PM 2.5</th>
+                                    <th class="text-center">ISPU PM 10</th>
+                                    <th class="text-center">ISPU Ozon</th>
+                                    <th class="text-center">ISPU VOC</th>
                                     <th class="text-center">Kualitas Udara</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -39,10 +44,26 @@
                                         <td class="text-center">{{ $data->pm10 }}</td>
                                         <td class="text-center">{{ $data->ozon }}</td>
                                         <td class="text-center">{{ $data->voc }}</td>
-                                        <td class="text-center">{{ $data->kualitas }}</td>
+                                        <td class="text-center">{{ $data->ispupm25 }}</td>
+                                        <td class="text-center">{{ $data->ispupm10 }}</td>
+                                        <td class="text-center">{{ $data->ispuozon }}</td>
+                                        <td class="text-center">{{ $data->ispuvoc }}</td>
+                                        <td class="text-center">
+                                            <div
+                                                class="card @if($data->kualitas == "Baik") bg-success
+                                                @elseif($data->kualitas == "Sedang") bg-info
+                                                @elseif($data->kualitas == "Tidak Sehat") bg-warning
+                                                @elseif($data->kualitas == "Sangat Tidak Sehat") bg-danger
+                                                @elseif($data->kualitas == "Berbahaya") bg-black " @endif>
+                                                <div class="card-text">
+                                                    <p class="card-text">{{ $data->kualitas }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td class="text-center">
                                             <ul class="table-controls">
-                                                <li><a href="   {{ route('edit_alat', $data->id) }}" class="bs-tooltip"
+                                                <li><a href="{{ route('edit_parameter', $data->id) }}"
+                                                       class="bs-tooltip"
                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
                                                        data-original-title="Edit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
