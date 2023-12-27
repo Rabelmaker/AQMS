@@ -14,28 +14,22 @@
                 <div class="col-lg-12">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-content widget-content-area">
-                            <form action="{{ route('post_alat') }}" method="post" enctype="multipart/form-data" class="row g-3">
+                            <form action="{{ route('post_akun') }}" method="post" enctype="multipart/form-data" class="row g-3">
                                 @csrf
                                 <input type="hidden" name="mode" value="edit">
                                 <input type="hidden" name="id" value="{{ $data->id }}">
                                 <div class="col-12">
-                                    <label for="inputCode" class="form-label">Code Alat</label>
-                                    <input type="text" class="form-control" name="code" required id="inputCode" value="{{ $data->code }}" placeholder="Device v.1">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputAlamat" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" id="inputAlamat" name="alamat" required value="{{ $data->alamat }}"
-                                           placeholder="Universitas Lancang Kuning">
+                                    <label for="inputNama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" name="nama" required id="inputNama" value="{{$data->nama}}">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="inputLatitude" class="form-label">Latitude</label>
-                                    <input type="text" class="form-control" id="inputLatitude" name="lat" required value="{{ $data->lat }}"
-                                           placeholder="0.5761342466549415">
+                                    <label for="inputUsername" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="inputUsername" name="username" required
+                                           value="{{$data->username}}">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="inputLongitude" class="form-label">Longitude</label>
-                                    <input type="text" class="form-control" id="inputLongitude" name="lon" required value="{{ $data->lon }}"
-                                           placeholder="101.42526743883724">
+                                    <label for="inputPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="inputPassword" name="password" required>
                                 </div>
                                 <button type="submit" class="btn btn-success col-2 mt-5 mb-2 me-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
