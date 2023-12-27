@@ -57,8 +57,10 @@ class AdminController extends Controller
     public function parameter()
     {
         $data = DB::table('pengukuran_tb')
-            ->join('alat_tb', 'pengukuran_tb.id_alat', '=', 'alat_tb.id')
+            ->leftJoin('alat_tb', 'pengukuran_tb.id_alat', '=', 'alat_tb.id')
+            ->select("pengukuran_tb.*","alat_tb.code")
             ->get();
+//        dd($data);
         return view('ui.parameter.index', ['datas' => $data]);
     }
 
@@ -569,7 +571,7 @@ class AdminController extends Controller
 
     public function akun()
     {
-        $data = DB::table('admin_tb')->get();
+        $data = DB::table('user_tb')->get();
         return view('ui.akun.index', ['datas' => $data]);
     }
 
@@ -580,7 +582,7 @@ class AdminController extends Controller
 
     public function edit_akun($id)
     {
-        $data = DB::table('admin_tb')->where('id', $id)->first();
+        $data = DB::table('user_tb')->where('id', $id)->first();
         return view('ui.akun.edit', ['data' => $data]);
     }
 
@@ -589,13 +591,15 @@ class AdminController extends Controller
         $data = [
             'nama' => $request->nama,
             'username' => $request->username,
+            'password' => $this->md5Pass($request->password),
+            'remember_token' => $this->md5Pass($request->password)
         ];
 
         if ($request->mode === 'add') {
-            $id = DB::table('admin_tb')->insertGetId($data);
+            $id = DB::table('user_tb')->insertGetId($data);
         } else {
             $id = $request->id;
-            DB::table('admin_tb')->where('id', $id)->update($data);
+            DB::table('user_tb')->where('id', $id)->update($data);
         }
 
         if ($request->has('gambar')) {
@@ -609,7 +613,7 @@ class AdminController extends Controller
             $nama = date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($tujuan, $nama);
 
-            DB::table('alat_tb')
+            DB::table('user_tb')
                 ->where('id', $id)
                 ->update(['gambar' => "$tujuan/$nama"]);
         }

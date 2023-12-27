@@ -73,7 +73,7 @@
                                 <line x1="12" y1="8" x2="12" y2="16"></line>
                                 <line x1="8" y1="12" x2="16" y2="12"></line>
                             </svg>
-                            <span class="btn-text-inner">Tambah Device</span>
+                            <span class="btn-text-inner">Tambah Akun</span>
                         </button>
                     </a>
                 </div>
