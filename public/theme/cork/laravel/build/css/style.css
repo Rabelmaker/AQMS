@@ -2797,7 +2797,7 @@ input:checked+.ms-switch-slider.ms-switch-dark {
   left: -20px;
   height: 100%;
   width: 40px;
-  background-color: #ea6e27
+  background-color: #ea6e27;
   border-radius: 50%;
   -webkit-box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);

@@ -58,15 +58,15 @@ class AdminController extends Controller
     {
         $data = DB::table('pengukuran_tb')
             ->leftJoin('alat_tb', 'pengukuran_tb.id_alat', '=', 'alat_tb.id')
-            ->select("pengukuran_tb.*","alat_tb.code")
+            ->select("pengukuran_tb.*", "alat_tb.code")
             ->get();
-//        dd($data);
+
         return view('ui.parameter.index', ['datas' => $data]);
     }
 
     public function add_parameter()
     {
-        $alatData = DB::table('alat_tb')->select('code','id')->get(); // Ambil semua data alat dari database
+        $alatData = DB::table('alat_tb')->select('code', 'id')->get(); // Ambil semua data alat dari database
         return view('ui.parameter.add', ['alatDatas' => $alatData]);
     }
 
@@ -147,81 +147,85 @@ class AdminController extends Controller
         return redirect(route('parameter'))->with('sukses', 'Parameter telah di hapus');
     }
 
-    public function hitungispupm10($pm10){
+    public function hitungispupm10($pm10)
+    {
         $Ia = $this->batasispupm10($pm10)["ispuatas"];
         $Ib = $this->batasispupm10($pm10)["ispubawah"];
         $Xa = $this->bataspm10($pm10)["atas"];
         $Xb = $this->bataspm10($pm10)["bawah"];
         $Xx = $pm10;
 
-        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+        $ispu = ($Ia - $Ib) / ($Xa - $Xb) * ($Xx - $Xb) + $Ib;
 
         return $ispu;
     }
 
-    public function hitungispupm25($pm25){
+    public function hitungispupm25($pm25)
+    {
         $Ia = $this->batasispupm25($pm25)["ispuatas"];
         $Ib = $this->batasispupm25($pm25)["ispubawah"];
         $Xa = $this->bataspm25($pm25)["atas"];
         $Xb = $this->bataspm25($pm25)["bawah"];
         $Xx = $pm25;
 
-        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+        $ispu = ($Ia - $Ib) / ($Xa - $Xb) * ($Xx - $Xb) + $Ib;
 
         return $ispu;
     }
 
-    public function hitungispuozon($ozon){
+    public function hitungispuozon($ozon)
+    {
         $Ia = $this->batasispuozon($ozon)["ispuatas"];
         $Ib = $this->batasispuozon($ozon)["ispubawah"];
         $Xa = $this->batasozon($ozon)["atas"];
         $Xb = $this->batasozon($ozon)["bawah"];
         $Xx = $ozon;
 
-        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+        $ispu = ($Ia - $Ib) / ($Xa - $Xb) * ($Xx - $Xb) + $Ib;
 
         return $ispu;
     }
 
-    public function hitungispuvoc($voc){
+    public function hitungispuvoc($voc)
+    {
         $Ia = $this->batasispuvoc($voc)["ispuatas"];
         $Ib = $this->batasispuvoc($voc)["ispubawah"];
         $Xa = $this->batasvoc($voc)["atas"];
         $Xb = $this->batasvoc($voc)["bawah"];
         $Xx = $voc;
 
-        $ispu = ($Ia-$Ib)/($Xa-$Xb)*($Xx-$Xb)+$Ib;
+        $ispu = ($Ia - $Ib) / ($Xa - $Xb) * ($Xx - $Xb) + $Ib;
 
         return $ispu;
     }
 
     public function bataspm10($pm10)
     {
-        if ($pm10<=50){
+        if ($pm10 <= 50) {
             return [
                 "bawah" => 0,
                 "atas" => 50
             ];
         }
-        if ($pm10<=150){
+        if ($pm10 <= 150) {
             return [
                 "bawah" => 50,
                 "atas" => 150
             ];
         }
-        if ($pm10<=350){
+        if ($pm10 <= 350) {
             return [
                 "bawah" => 150,
                 "atas" => 350
             ];
         }
-        if ($pm10<=420){
+        if ($pm10 <= 420) {
             return [
                 "bawah" => 350,
                 "atas" => 420
             ];
         }
-        if ($pm10<=500){
+        if ($pm10 <= 500) {
             return [
                 "bawah" => 420,
                 "atas" => 500,
@@ -236,31 +240,31 @@ class AdminController extends Controller
 
     public function bataspm25($pm25)
     {
-        if ($pm25<=15.5){
+        if ($pm25 <= 15.5) {
             return [
                 "bawah" => 0,
                 "atas" => 15.5
             ];
         }
-        if ($pm25<=55.4){
+        if ($pm25 <= 55.4) {
             return [
                 "bawah" => 15.5,
                 "atas" => 55.4
             ];
         }
-        if ($pm25<=150.4){
+        if ($pm25 <= 150.4) {
             return [
                 "bawah" => 55.4,
                 "atas" => 150.4
             ];
         }
-        if ($pm25<=250.4){
+        if ($pm25 <= 250.4) {
             return [
                 "bawah" => 150.4,
                 "atas" => 250.4
             ];
         }
-        if ($pm25<=500){
+        if ($pm25 <= 500) {
             return [
                 "bawah" => 250.4,
                 "atas" => 500,
@@ -274,31 +278,31 @@ class AdminController extends Controller
 
     public function batasozon($ozon)
     {
-        if ($ozon<=120){
+        if ($ozon <= 120) {
             return [
                 "bawah" => 0,
                 "atas" => 120
             ];
         }
-        if ($ozon<=235){
+        if ($ozon <= 235) {
             return [
                 "bawah" => 120,
                 "atas" => 235
             ];
         }
-        if ($ozon<=400){
+        if ($ozon <= 400) {
             return [
                 "bawah" => 235,
                 "atas" => 400
             ];
         }
-        if ($ozon<=800){
+        if ($ozon <= 800) {
             return [
                 "bawah" => 400,
                 "atas" => 800
             ];
         }
-        if ($ozon<=1000){
+        if ($ozon <= 1000) {
             return [
                 "bawah" => 800,
                 "atas" => 1000,
@@ -312,31 +316,31 @@ class AdminController extends Controller
 
     public function batasvoc($voc)
     {
-        if ($voc<=45){
+        if ($voc <= 45) {
             return [
                 "bawah" => 0,
                 "atas" => 45
             ];
         }
-        if ($voc<=100){
+        if ($voc <= 100) {
             return [
                 "bawah" => 45,
                 "atas" => 100
             ];
         }
-        if ($voc<=215){
+        if ($voc <= 215) {
             return [
                 "bawah" => 100,
                 "atas" => 215
             ];
         }
-        if ($voc<=432){
+        if ($voc <= 432) {
             return [
                 "bawah" => 215,
                 "atas" => 432
             ];
         }
-        if ($voc<=648){
+        if ($voc <= 648) {
             return [
                 "bawah" => 432,
                 "atas" => 648,
@@ -350,31 +354,31 @@ class AdminController extends Controller
 
     public function batasispupm10($pm10)
     {
-        if ($pm10<=50){
+        if ($pm10 <= 50) {
             return [
                 "ispubawah" => 0,
                 "ispuatas" => 50
             ];
         }
-        if ($pm10<=150){
+        if ($pm10 <= 150) {
             return [
                 "ispubawah" => 51,
                 "ispuatas" => 100
             ];
         }
-        if ($pm10<=350){
+        if ($pm10 <= 350) {
             return [
                 "ispubawah" => 101,
                 "ispuatas" => 200
             ];
         }
-        if ($pm10<=420){
+        if ($pm10 <= 420) {
             return [
                 "ispubawah" => 201,
                 "ispuatas" => 300
             ];
         }
-        if ($pm10<=500){
+        if ($pm10 <= 500) {
             return [
                 "ispubawah" => 301,
                 "ispuatas" => 500,
@@ -389,31 +393,31 @@ class AdminController extends Controller
 
     public function batasispupm25($pm25)
     {
-        if ($pm25<=15.5){
+        if ($pm25 <= 15.5) {
             return [
                 "ispubawah" => 0,
                 "ispuatas" => 50
             ];
         }
-        if ($pm25<=55.4){
+        if ($pm25 <= 55.4) {
             return [
                 "ispubawah" => 51,
                 "ispuatas" => 100
             ];
         }
-        if ($pm25<=150.4){
+        if ($pm25 <= 150.4) {
             return [
                 "ispubawah" => 101,
                 "ispuatas" => 200
             ];
         }
-        if ($pm25<=250.4){
+        if ($pm25 <= 250.4) {
             return [
                 "ispubawah" => 201,
                 "ispuatas" => 300
             ];
         }
-        if ($pm25<=500){
+        if ($pm25 <= 500) {
             return [
                 "ispubawah" => 301,
                 "ispuatas" => 500,
@@ -427,31 +431,31 @@ class AdminController extends Controller
 
     public function batasispuozon($ozon)
     {
-        if ($ozon<=120){
+        if ($ozon <= 120) {
             return [
                 "ispubawah" => 0,
                 "ispuatas" => 50
             ];
         }
-        if ($ozon<=235){
+        if ($ozon <= 235) {
             return [
                 "ispubawah" => 51,
                 "ispuatas" => 100
             ];
         }
-        if ($ozon<=400){
+        if ($ozon <= 400) {
             return [
                 "ispubawah" => 101,
                 "ispuatas" => 200
             ];
         }
-        if ($ozon<=800){
+        if ($ozon <= 800) {
             return [
                 "ispubawah" => 201,
                 "ispuatas" => 300
             ];
         }
-        if ($ozon<=1000){
+        if ($ozon <= 1000) {
             return [
                 "ispubawah" => 301,
                 "ispuatas" => 500,
@@ -465,31 +469,31 @@ class AdminController extends Controller
 
     public function batasispuvoc($voc)
     {
-        if ($voc<=45){
+        if ($voc <= 45) {
             return [
                 "ispubawah" => 0,
                 "ispuatas" => 50
             ];
         }
-        if ($voc<=100){
+        if ($voc <= 100) {
             return [
                 "ispubawah" => 51,
                 "ispuatas" => 100
             ];
         }
-        if ($voc<=215){
+        if ($voc <= 215) {
             return [
                 "ispubawah" => 101,
                 "ispuatas" => 200
             ];
         }
-        if ($voc<=432){
+        if ($voc <= 432) {
             return [
                 "ispubawah" => 201,
                 "ispuatas" => 300
             ];
         }
-        if ($voc<=648){
+        if ($voc <= 648) {
             return [
                 "ispubawah" => 301,
                 "ispuatas" => 500,
@@ -595,6 +599,14 @@ class AdminController extends Controller
             'remember_token' => $this->md5Pass($request->password)
         ];
 
+        // Check for duplicate username
+        $existingUser = DB::table('user_tb')->where('username', $request->username)->first();
+
+        if ($existingUser && ($request->mode === 'add' || ($request->mode === 'edit' && $existingUser->id != $request->id))) {
+            // If the username already exists and it's not the current user being edited, return an error
+            return redirect(route('akun'))->with('error', 'Username sudah ada');
+        }
+
         if ($request->mode === 'add') {
             $id = DB::table('user_tb')->insertGetId($data);
         } else {
@@ -603,7 +615,6 @@ class AdminController extends Controller
         }
 
         if ($request->has('gambar')) {
-
             request()->validate([
                 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             ]);
@@ -618,8 +629,9 @@ class AdminController extends Controller
                 ->update(['gambar' => "$tujuan/$nama"]);
         }
 
-        return redirect(route('akun'))->with('sukses', 'alat telah di perbarui');
+        return redirect(route('akun'))->with('sukses', 'akun telah diperbarui');
     }
+
 
     public function delete_akun($id)
     {
@@ -638,6 +650,7 @@ class AdminController extends Controller
         $data = DB::table('slide_tb')->get();
         return view('ui.userscreen.home.index', ['datas' => $data]);
     }
+
     //------------------------------------------------------------------------------------------------------------------
 
     public function md5Pass($pass)
