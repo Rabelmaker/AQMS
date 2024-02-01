@@ -14,6 +14,7 @@ class Encryption
         $myiv = 'AminAminAminYaRabbalAlamin';
         $this->key = substr(hash('sha256', $mykey), 0, 32);
         $this->iv = substr(hash('sha256', $myiv), 0, 16);
+        $this->database = app('firebase.database');
     }
 
     public function encrypt(string $value): string

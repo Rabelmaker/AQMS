@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Kreait\Firebase\Contract\Database;
 use function Laravel\Prompts\select;
 
 class AdminController extends Controller
@@ -53,8 +54,20 @@ class AdminController extends Controller
     }
 
     //------------------------------------------------------------------------------------------------------------------
-
+    public function __construct(Database $database)
+    {
+        $this->database = $database;
+        $this->tablename = 'datasensor';
+    }
     public function parameter()
+    {
+        $datasensor = $this->database->getReference($this->tablename)->getValue();
+        $datasensor=array_filter($datasensor);
+//        dd($datasensor);
+        return view('ui.parameter.indexfirebase', compact('datasensor'));
+    }
+
+    public function parameterx()
     {
         $data = DB::table('pengukuran_tb')
             ->leftJoin('alat_tb', 'pengukuran_tb.id_alat', '=', 'alat_tb.id')
@@ -64,7 +77,27 @@ class AdminController extends Controller
         return view('ui.parameter.index', ['datas' => $data]);
     }
 
-    public function add_parameter()
+
+    public function add_parameter(Request $request)
+    {
+        $postdata = [
+            'id_alat' => $request->id_alat,
+            'temp' => $request->temp,
+            'hum' => $request->hum,
+            'pm25' => $request->pm25,
+            'pm10' => $request->pm10,
+            'co' => $request->co,
+            'ozon' => $request->ozon,
+        ];
+        $postRef = $this->database->getReference($this->tablename)->push($postdata);
+        if ($postRef){
+            return redirect('ui.parameter.addfirebase')->with('status','data add successfully');
+        }else{
+            return redirect('ui.parameter.addfirebase')->with('status','data not successfully');
+        }
+    }
+
+    public function add_parameterx()
     {
         $alatData = DB::table('alat_tb')->select('code', 'id')->get(); // Ambil semua data alat dari database
         return view('ui.parameter.add', ['alatDatas' => $alatData]);
@@ -84,7 +117,7 @@ class AdminController extends Controller
             'hum' => $request->hum,
             'pm25' => $request->pm25,
             'pm10' => $request->pm10,
-            'voc' => $request->voc,
+            'co' => $request->co,
             'ozon' => $request->ozon,
         ];
 
@@ -92,14 +125,14 @@ class AdminController extends Controller
         $ispupm10 = $this->hitungispupm10($request->pm10);
         $ispupm25 = $this->hitungispupm25($request->pm25);
         $ispuozon = $this->hitungispuozon($request->ozon);
-        $ispuvoc = $this->hitungispuvoc($request->voc);
+        $ispuco = $this->hitungispuco($request->co);
 
         $data['ispupm10'] = $ispupm10;
         $data['ispupm25'] = $ispupm25;
         $data['ispuozon'] = $ispuozon;
-        $data['ispuvoc'] = $ispuvoc;
+        $data['ispuco'] = $ispuco;
 
-        $nilai_tertinggi = max($ispupm10, $ispupm25, $ispuozon, $ispuvoc);
+        $nilai_tertinggi = max($ispupm10, $ispupm25, $ispuozon, $ispuco);
 
         if ($nilai_tertinggi <= 50) {
             $data['kualitas'] = 'Baik'; // Hijau
@@ -186,13 +219,13 @@ class AdminController extends Controller
         return $ispu;
     }
 
-    public function hitungispuvoc($voc)
+    public function hitungispuco($co)
     {
-        $Ia = $this->batasispuvoc($voc)["ispuatas"];
-        $Ib = $this->batasispuvoc($voc)["ispubawah"];
-        $Xa = $this->batasvoc($voc)["atas"];
-        $Xb = $this->batasvoc($voc)["bawah"];
-        $Xx = $voc;
+        $Ia = $this->batasispuco($co)["ispuatas"];
+        $Ib = $this->batasispuco($co)["ispubawah"];
+        $Xa = $this->batasco($co)["atas"];
+        $Xb = $this->batasco($co)["bawah"];
+        $Xx = $co;
 
         $ispu = ($Ia - $Ib) / ($Xa - $Xb) * ($Xx - $Xb) + $Ib;
 
@@ -314,41 +347,41 @@ class AdminController extends Controller
         ];
     }
 
-    public function batasvoc($voc)
+    public function batasco($co)
     {
-        if ($voc <= 45) {
+        if ($co <= 4000) {
             return [
                 "bawah" => 0,
-                "atas" => 45
+                "atas" => 4000
             ];
         }
-        if ($voc <= 100) {
+        if ($co <= 8000) {
             return [
-                "bawah" => 45,
-                "atas" => 100
+                "bawah" => 4000,
+                "atas" => 8000
             ];
         }
-        if ($voc <= 215) {
+        if ($co <= 15000) {
             return [
-                "bawah" => 100,
-                "atas" => 215
+                "bawah" => 8000,
+                "atas" => 15000
             ];
         }
-        if ($voc <= 432) {
+        if ($co <= 30000) {
             return [
-                "bawah" => 215,
-                "atas" => 432
+                "bawah" => 15000,
+                "atas" => 30000
             ];
         }
-        if ($voc <= 648) {
+        if ($co <= 45000) {
             return [
-                "bawah" => 432,
-                "atas" => 648,
+                "bawah" => 30000,
+                "atas" => 45000,
             ];
         }
         return [
-            "bawah" => 648,
-            "atas" => 9999
+            "bawah" => 45000,
+            "atas" => 99999
         ];
     }
 
@@ -467,33 +500,33 @@ class AdminController extends Controller
         ];
     }
 
-    public function batasispuvoc($voc)
+    public function batasispuco($co)
     {
-        if ($voc <= 45) {
+        if ($co <= 4000) {
             return [
                 "ispubawah" => 0,
                 "ispuatas" => 50
             ];
         }
-        if ($voc <= 100) {
+        if ($co <= 8000) {
             return [
                 "ispubawah" => 51,
                 "ispuatas" => 100
             ];
         }
-        if ($voc <= 215) {
+        if ($co <= 15000) {
             return [
                 "ispubawah" => 101,
                 "ispuatas" => 200
             ];
         }
-        if ($voc <= 432) {
+        if ($co <= 30000) {
             return [
                 "ispubawah" => 201,
                 "ispuatas" => 300
             ];
         }
-        if ($voc <= 648) {
+        if ($co <= 45000) {
             return [
                 "ispubawah" => 301,
                 "ispuatas" => 500,
@@ -596,7 +629,7 @@ class AdminController extends Controller
             'nama' => $request->nama,
             'username' => $request->username,
             'password' => $this->md5Pass($request->password),
-            'remember_token' => $this->md5Pass($request->password)
+            'remember_token' => $this->md5Pass($request->password),
         ];
 
         // Check for duplicate username
@@ -635,7 +668,7 @@ class AdminController extends Controller
 
     public function delete_akun($id)
     {
-        DB::table('admin_tb')
+        DB::table('user_tb')
             ->where('id', $id)
             ->delete();
 
@@ -657,6 +690,9 @@ class AdminController extends Controller
     {
         return md5("$pass@skripsiakbar");
     }
+
+    //------------------------------------------------------------------------------------------------------------------
+
 
 
 }

@@ -24,7 +24,7 @@
                                     <th class="text-center">PM 2.5</th>
                                     <th class="text-center">PM 10</th>
                                     <th class="text-center">Ozon</th>
-                                    <th class="text-center">VOC</th>
+                                    <th class="text-center">CO</th>
                                     <th class="text-center">Kualitas Udara</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -39,7 +39,7 @@
                                         <td class="text-center">{{ $data->pm25 }}</td>
                                         <td class="text-center">{{ $data->pm10 }}</td>
                                         <td class="text-center">{{ $data->ozon }}</td>
-                                        <td class="text-center">{{ $data->voc }}</td>
+                                        <td class="text-center">{{ $data->co }}</td>
                                         <td class="text-center">
                                             <div
                                                 class="card @if($data->kualitas == "Baik") bg-success
